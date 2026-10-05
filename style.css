@@ -6,7 +6,7 @@
 }
 
 body {
-    background-color: #f0f7ff;
+    background-color: #f0f5ff;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -17,35 +17,37 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
+    padding: 0;
 }
 
 /* === Header === */
 .site-header {
     width: 100%;
     text-align: left;
-    padding: 12px 40px;
-    border-bottom: 1px solid #d0dceb;
+    padding: 16px 40px;
+    border-bottom: 1px solid #d6e4ff;
 }
 
 .telstra-logo {
-    height: 32px;
+    height: 36px;
     width: auto;
 }
 
-/* === Kotak Konten Umum === */
+/* === Kotak Konten — Putih di Tengah === */
 .content-card {
-    background-color: #ffffff;
+    background: #ffffff;
     width: 100%;
-    max-width: 420px;
-    padding: 40px 35px;
-    margin-top: 30px;
+    max-width: 280px;
+    padding: 32px 24px;
+    margin-top: 60px;
+    border-radius: 0;
+    box-shadow: none;
 }
 
 .content-card h1 {
-    font-size: 28px;
-    font-weight: 600;
-    color: #000;
+    font-size: 24px;
+    font-weight: 700;
+    color: #000000;
     margin-bottom: 8px;
 }
 
@@ -59,73 +61,143 @@ body {
 
 .subheading {
     font-size: 14px;
-    color: #444;
-    margin-bottom: 30px;
+    color: #555555;
+    margin-bottom: 28px;
 }
 
 .content-card label {
     display: block;
     font-weight: 600;
-    font-size: 14px;
-    color: #000;
-    margin-bottom: 4px;
-}
-
-.example-text {
     font-size: 13px;
-    color: #666;
-    margin-bottom: 8px;
+    color: #000000;
+    margin-bottom: 6px;
 }
 
 .content-card input {
     width: 100%;
-    padding: 10px 12px;
-    border: 1px solid #999;
+    padding: 8px 10px;
+    border: 1px solid #999999;
     border-radius: 2px;
-    font-size: 15px;
-    margin-bottom: 14px;
+    font-size: 14px;
+    margin-bottom: 12px;
+    background: #ffffff;
 }
 
 .content-card input:focus {
     outline: none;
-    border-color: #0066CC;
-    box-shadow: 0 0 0 1px #0066CC;
+    border-color: #0066FF;
+    box-shadow: 0 0 0 1px #0066FF;
 }
 
-.forgot-link, .recover-link, .link-blue {
-    font-size: 14px;
-    color: #0066CC;
+/* === Halaman Kode Verifikasi === PERSIS GAMBAR === */
+.resend-text {
+    font-size: 13px;
+    color: #333333;
+    margin: 12px 0 4px;
+}
+
+.resend-link {
+    font-size: 13px;
+    color: #0066FF;
+    text-decoration: underline;
+    display: inline-block;
+    margin-bottom: 24px;
+}
+
+.resend-link:hover {
     text-decoration: none;
+}
+
+.code-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 4px;
+}
+
+.code-actions .back-link {
+    font-size: 13px;
+    color: #0066FF;
+    text-decoration: none;
+}
+
+.code-actions .back-link:hover {
+    text-decoration: underline;
+}
+
+.next-link {
+    background: none;
+    border: none;
+    color: #0066FF;
+    font-size: 13px;
+    cursor: pointer;
+    padding: 0;
+    text-decoration: underline;
+}
+
+.next-link:hover {
+    text-decoration: none;
+}
+
+/* === Halaman Password === */
+.back-label {
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 4px;
+}
+
+.email-display-box {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid #999;
+    border-radius: 2px;
+    padding: 8px 10px;
     margin-bottom: 20px;
+}
+
+.back-arrow {
+    color: #0066FF;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.recover-link {
+    font-size: 13px;
+    color: #0066FF;
+    text-decoration: underline;
+    margin: 4px 0 20px;
     display: inline-block;
 }
 
-.forgot-link:hover, .recover-link:hover, .link-blue:hover {
-    text-decoration: underline;
+.recover-link:hover {
+    text-decoration: none;
 }
 
 .checkbox-label {
     display: flex;
     align-items: flex-start;
-    gap: 8px;
+    gap: 6px;
     font-weight: normal;
-    font-size: 14px;
-    margin: 16px 0 24px;
+    font-size: 13px;
+    margin: 0 0 20px;
     cursor: pointer;
 }
 
 .checkbox-label input {
-    margin-top: 2px;
+    width: auto;
+    margin: 2px 0 0 0;
 }
 
-/* === Tombol Umum === */
+/* === Tombol === */
 .btn-primary {
     width: 100%;
-    padding: 12px;
-    background-color: #0066CC;
-    color: #fff;
+    padding: 10px;
+    background-color: #0066FF;
+    color: #ffffff;
     border: none;
-    border-radius: 24px;
+    border-radius: 999px;
     font-size: 15px;
     font-weight: 500;
     cursor: pointer;
@@ -133,7 +205,7 @@ body {
 }
 
 .btn-primary:hover {
-    background-color: #0052aa;
+    background-color: #0052cc;
 }
 
 .btn-wide {
@@ -145,57 +217,35 @@ body {
 .divider {
     text-align: center;
     font-size: 13px;
-    color: #777;
-    margin: 16px 0;
+    color: #777777;
+    margin: 16px 0 12px;
 }
 
-.btn-secondary {
+.btn-create-id {
     width: 100%;
-    padding: 11px;
-    background: #fff;
-    color: #0066CC;
-    border: 1px solid #0066CC;
-    border-radius: 24px;
-    font-size: 15px;
+    padding: 8px;
+    background: #ffffff;
+    color: #000000;
+    border: 1px solid #999999;
+    border-radius: 0;
+    font-size: 13px;
     cursor: pointer;
     transition: background 0.2s;
 }
 
-.btn-secondary:hover {
-    background: #f0f7ff;
-}
-
-/* === Kembali ke Email === */
-.back-label {
-    font-size: 13px;
-    color: #666;
-    margin-bottom: 6px;
-}
-
-.email-display-box {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border: 1px solid #ccc;
-    padding: 10px 12px;
-    margin-bottom: 24px;
-    font-size: 14px;
-}
-
-.change-link {
-    color: #0066CC;
-    text-decoration: none;
-    font-weight: bold;
+.btn-create-id:hover {
+    background: #f5f5f5;
 }
 
 /* === Kata Sandi + Ikon Mata === */
 .password-input-wrapper {
     position: relative;
     width: 100%;
+    margin-bottom: 4px;
 }
 
 .password-input-wrapper input {
-    padding-right: 44px;
+    padding-right: 40px;
     margin-bottom: 0;
 }
 
@@ -206,88 +256,98 @@ body {
 
 .toggle-password {
     position: absolute;
-    right: 10px;
+    right: 8px;
     top: 50%;
     transform: translateY(-50%);
     background: none;
     border: none;
-    font-size: 18px;
+    font-size: 14px;
     cursor: pointer;
+    color: #666;
 }
 
 /* === Pesan Error Merah === */
 .error-box {
     display: flex;
     align-items: flex-start;
-    gap: 8px;
-    margin: 12px 0;
+    gap: 6px;
+    margin: 10px 0;
     color: #d32f2f;
-    font-size: 13px;
+    font-size: 12px;
 }
 
 .error-icon {
     font-weight: bold;
 }
 
-/* === Halaman Direct Debit === */
+/* === Direct Debit === */
 .debit-icon, .success-icon {
     text-align: center;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
 }
 
 .debit-benefits {
     list-style: none;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
 }
 
 .debit-benefits li {
     display: flex;
     align-items: center;
-    gap: 10px;
-    margin-bottom: 12px;
-    font-size: 15px;
+    gap: 8px;
+    margin-bottom: 10px;
+    font-size: 14px;
 }
 
 .check-icon {
-    font-size: 18px;
+    font-size: 16px;
 }
 
 .debit-desc {
-    font-size: 14px;
+    font-size: 13px;
     color: #444;
     line-height: 1.6;
-    margin-bottom: 30px;
+    margin-bottom: 24px;
     text-align: center;
 }
 
 .debit-footer {
     text-align: center;
-    margin-top: 24px;
-    font-size: 14px;
+    margin-top: 20px;
+    font-size: 13px;
     color: #666;
 }
 
-/* === Halaman Payment Details === */
+.link-blue {
+    color: #0066FF;
+    text-decoration: underline;
+}
+
+.link-blue:hover {
+    text-decoration: none;
+}
+
+/* === Payment Details === */
 .step-indicator {
-    font-size: 13px;
+    font-size: 12px;
     color: #666;
-    margin-bottom: 8px;
+    margin-bottom: 4px;
 }
 
 .payment-desc {
-    font-size: 14px;
+    font-size: 13px;
     color: #444;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
     line-height: 1.5;
 }
 
 .form-group {
-    margin-bottom: 16px;
+    margin-bottom: 14px;
 }
 
 .form-row {
     display: flex;
-    gap: 16px;
+    gap: 12px;
 }
 
 .form-row .form-group {
@@ -295,46 +355,46 @@ body {
 }
 
 .hint-text {
-    font-size: 12px;
+    font-size: 11px;
     color: #777;
-    margin-top: 4px;
+    margin-top: 2px;
 }
 
 .form-actions {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 24px;
+    margin-top: 20px;
 }
 
-.back-link {
-    font-size: 14px;
-    color: #0066CC;
-    text-decoration: none;
-}
-
-.back-link:hover {
+.form-actions .back-link {
+    font-size: 13px;
+    color: #0066FF;
     text-decoration: underline;
 }
 
+.form-actions .back-link:hover {
+    text-decoration: none;
+}
+
 .btn-next {
-    padding: 10px 28px;
-    background: #fff;
-    color: #0066CC;
-    border: 1px solid #0066CC;
-    border-radius: 4px;
-    font-size: 14px;
+    padding: 8px 20px;
+    background: #ffffff;
+    color: #0066FF;
+    border: 1px solid #0066FF;
+    border-radius: 2px;
+    font-size: 13px;
     cursor: pointer;
 }
 
 .btn-next:hover {
-    background: #f0f7ff;
+    background: #f0f5ff;
 }
 
-/* === Halaman Sukses === */
+/* === Sukses === */
 .redirect-text {
     text-align: center;
-    margin-top: 24px;
-    font-size: 13px;
+    margin-top: 20px;
+    font-size: 12px;
     color: #666;
 }
